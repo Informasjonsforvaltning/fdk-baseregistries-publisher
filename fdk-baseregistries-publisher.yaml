@@ -1,0 +1,13 @@
+openapi: 3.0.2
+info:
+  title: FDK baseregistries publisher
+  description: An service exposing an endpoint that publishes a catalog of national base registries
+  version: '1.0'
+  contact:
+    name: Digitaliseringsdirektoratet
+    url: 'https://digdir.no'
+  license:
+    name: License of API
+    url: 'http://data.norge.no/nlod/no/2.0'
+tags:
+  - name: fdk-baseregistries-publisher

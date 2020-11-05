@@ -1,0 +1,7 @@
+version: '3'
+services:
+  fdk-baseregistries-publisher:
+    build: .
+    image: eu.gcr.io/digdir-fdk-infra/fdk-baseregistries-publisher:test
+    ports:
+      - "8080:8080"
