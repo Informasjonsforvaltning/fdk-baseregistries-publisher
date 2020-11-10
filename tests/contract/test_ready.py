@@ -12,4 +12,3 @@ def test_ready(http_service: Any) -> None:
     response = requests.get(url)
 
     assert response.status_code == 200
-    assert response.text == "OK"

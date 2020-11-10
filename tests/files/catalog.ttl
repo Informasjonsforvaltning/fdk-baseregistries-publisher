@@ -1,0 +1,134 @@
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://data.norge.no/baseregistries/catalog> a dcat:Catalog ;
+  dct:description "Datakatalog for REGISTERENHETEN I BRØNNØYSUND"@nb ;
+  dct:identifier "<http://dataset-catalogue:8080/catalogs/974760673>" ;
+  dct:title "Enhetsregisteret"@nb ;
+  dct:title "The Register of Business Enterprises"@en ;
+  dct:publisher <https://organization-catalogue.fellesdatakatalog.digdir.no/organizations/974760673> ;
+  dct:LinguisticSystem <http://id.loc.gov/vocabulary/iso639-1/nb> ;
+  dcat:themeTaxonomy <http://eurovoc.europa.eu/100141> ;
+  dct:spatial <http://publications.europa.eu/resource/authority/country/NOR> ;
+  dcat:dataset <http://brreg.no/catalogs/974760673/datasets/ef600ed8-cba1-4bc4-863f-6d41c836f18c> ;
+  .
+
+  <http://brreg.no/catalogs/974760673/datasets/ef600ed8-cba1-4bc4-863f-6d41c836f18c> a dcat:Dataset ;
+    dct:description "Datasettet fra Enhetsregisteret inneholder informasjon om alle registrerte virksomheter innen næringsliv, offentlig- og frivillig sektor. Enhetsregisteret inneholder personopplysninger. Datasettet har derfor begrenset offentlighet. Det finnes imidlertid distribusjoner som leveres uten personopplysninger og som derfor er offentlig tilgjengelig. Se under \"Distribusjoner\" for mer informasjon.\n\n"@nb ;
+    dct:identifier "<https://data.norge.no/datasets/68d08f28-a16d-4fab-a953-ed4ab08ce2e2>" ;
+    dct:title "Enhetsregisteret"@nb ;
+    dcat:theme <http://publications.europa.eu/resource/authority/data-theme/JUST> ;
+    dcat:theme <http://publications.europa.eu/resource/authority/data-theme/GOVE> ;
+    dcat:distribution [
+        a dcat:Distribution ;
+        dct:description "Full tilgang til Enhetsregisteret"@nb ;
+        dct:description "Full access to the Central Coordinating Register for Legal Entities"@en ;
+        dcat:accessURL <https://www.brreg.no/produkter-og-tjenester/bestille-produkter/maskinlesbare-data-enhetsregisteret/full-tilgang-enhetsregisteret/> ;
+        dcat:mediaType <https://www.w3.org/ns/iana/media-types/application/xml#Resource>
+    ] ;
+    dcat:distribution [
+        a dcat:Distribution ;
+        dct:description "Digitaliseringsdirektoratet"@nb ;
+        dct:description "Digitization Directorate"@en ;
+        dcat:accessURL <http://hotell.difi.no/api/json/brreg/naeringskode> ;
+        dcat:mediaType <https://www.w3.org/ns/iana/media-types/application/json#Resource>
+    ] ;
+    dcat:distribution [
+        a dcat:Distribution ;
+        dct:description "Digitaliseringsdirektoratet"@nb ;
+        dct:description "Digitization Directorate"@en ;
+        dcat:accessURL <https://hotell.difi.no/api/xml/brreg/naeringskode> ;
+        dcat:mediaType <https://www.w3.org/ns/iana/media-types/application/xml#Resource>
+    ] ;
+    dcat:distribution [
+        a dcat:Distribution ;
+        dct:description "Digitaliseringsdirektoratet"@nb ;
+        dct:description "Digitization Directorate"@en ;
+        dcat:accessURL <https://hotell.difi.no/api/yaml/brreg/naeringskode> ;
+        dcat:mediaType <https://www.w3.org/ns/iana/media-types/application/x.yaml#Resource>
+    ] ;
+    dcat:distribution [
+        a dcat:Distribution ;
+        dct:description "Digitaliseringsdirektoratet"@nb ;
+        dct:description "Digitization Directorate"@en ;
+        dcat:accessURL <https://hotell.difi.no/api/csv/brreg/naeringskode> ;
+        dcat:mediaType <https://www.w3.org/ns/iana/media-types/text/csv#Resource>
+    ] ;
+    dcat:distribution [
+        a dcat:Distribution ;
+        dct:description "Data fra Enhetsregisteret"@nb ;
+        dct:description "Data from the Register of Legal Entities"@en ;
+        dcat:accessURL <https://data.brreg.no/enhetsregisteret/api/enheter/lastned/regneark> ;
+        dcat:mediaType <https://www.w3.org/ns/iana/media-types/application/vnd.openxmlformats-officedocument.spreadsheetml.sheet#Resource>
+    ] ;
+      dcat:distribution [
+        a dcat:Distribution ;
+        dct:description "Data fra Enhetsregisteret"@nb ;
+        dct:description "Data from the Register of Legal Entities"@en ;
+        dcat:accessURL <https://data.brreg.no/enhetsregisteret/api/enheter/lastned> ;
+        dcat:mediaType <https://www.w3.org/ns/iana/media-types/application/json#Resource>
+    ] ;
+    dcat:keyword "Virksomhet"@nb ;
+    dcat:keyword "Underenhet"@nb ;
+    dcat:keyword "Foretaksregisteret"@nb ;
+    dcat:keyword "Enhet"@nb ;
+    dcat:keyword "Rolleopplysninger"@nb ;
+    dcat:keyword "Brønnøysundregistrene"@nb ;
+    dcat:keyword "Foretak"@nb ;
+    dcat:keyword "Styremedlem"@nb ;
+    dcat:keyword "Næringsliv"@nb ;
+    dcat:keyword "Bedrift"@nb ;
+    dcat:keyword "organisasjonsform "@nb ;
+    dcat:keyword "Grunndata"@nb ;
+    dcat:keyword "Daglig leder"@nb ;
+    dct:spatial <http://publications.europa.eu/resource/authority/country/NOR>
+    .
+
+<https://organization-catalogue.fellesdatakatalog.digdir.no/organizations/974760673>
+  a foaf:Agent ;
+  foaf:name "REGISTERENHETEN I BRØNNØYSUND"@nb ;
+  dct:identifier "<https://organization-catalogue.fellesdatakatalog.digdir.no/organizations/974760673>" ;
+  skos:inScheme <http://publications.europa.eu/resource/authority/corporate-body> ;
+  dct:type <http://purl.org/adms/publishertype/NationalAuthority> .
+
+<http://eurovoc.europa.eu/100141>
+  a skos:ConceptScheme ;
+  dct:title "EuroVoc" .
+
+<http://purl.org/adms/publishertype/NationalAuthority>
+  a skos:Concept ;
+  skos:prefLabel "National authority" ;
+  skos:inScheme <http://purl.org/adms/publishertype/1.0> .
+
+<http://publications.europa.eu/resource/authority/data-theme/JUST>
+  a skos:Concept ;
+  skos:prefLabel "Justice, legal system and public safety" .
+
+<http://publications.europa.eu/resource/authority/data-theme/GOVE>
+  a skos:Concept ;
+  skos:prefLabel "Government and public sector" .
+
+<https://www.w3.org/ns/iana/media-types/application/xml#Resource>
+  a dct:MediaType .
+
+<https://www.w3.org/ns/iana/media-types/application/json#Resource>
+  a dct:MediaType .
+
+<https://www.w3.org/ns/iana/media-types/application/x.yaml#Resource>
+  a dct:MediaType .
+
+<https://www.w3.org/ns/iana/media-types/text/csv#Resource>
+  a dct:MediaType .
+
+<https://www.w3.org/ns/iana/media-types/application/javascript#Resource>
+  a dct:MediaType .
+
+<https://www.w3.org/ns/iana/media-types/application/vnd.openxmlformats-officedocument.spreadsheetml.sheet#Resource>
+  a dct:MediaType .
+
+<http://publications.europa.eu/resource/authority/country/NOR>
+  a dct:Location ;
+  skos:inScheme <http://publications.europa.eu/resource/authority/country> .

@@ -3,16 +3,26 @@ import pytest
 from pytest_mock import MockFixture
 from rdflib import Graph
 
+
 from fdk_baseregistries_publisher.service import (
     fetch_baseregistries,
+    FetchFromServiceException,
 )
 
 
 @pytest.mark.unit
 def test_fetch_fetch_baseregistries(mocker: MockFixture) -> None:
     """Should return a Graph."""
-    g = fetch_baseregistries()
-    assert isinstance(g, Graph)
+    g1 = fetch_baseregistries()
+    assert isinstance(g1, Graph)
+
+
+@pytest.mark.unit
+def test_fetch_baseregistries_when_parsing_fails(mocker: MockFixture) -> None:
+    """Should raise a FetchFromServiceException."""
+    mocker.patch("rdflib.Graph.parse", return_value=None)
+    with pytest.raises(FetchFromServiceException):
+        _ = fetch_baseregistries()
 
 
 def _mock_queryresult() -> str:
