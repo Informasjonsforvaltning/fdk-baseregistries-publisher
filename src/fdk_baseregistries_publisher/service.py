@@ -1,7 +1,7 @@
 """Service layer module for fdk_baseregistries_publisher."""
 from os import environ as env
 
-from rdflib import DCTERMS, FOAF, Graph, Namespace, RDF, SKOS, URIRef
+from rdflib import DCTERMS, FOAF, Graph, Literal, Namespace, RDF, SKOS, URIRef
 
 from .exceptions.exeption import FetchFromServiceException
 
@@ -57,6 +57,23 @@ def _create_catalog_graph() -> Graph:
     _g.bind("eurovoc", EUROVOC)
 
     _g.add((baseregister_catalog, RDF.type, DCAT.Catalog))
+    # dct:title
+    title = Literal("Norwegian base registries", lang="en")
+    _g.add((baseregister_catalog, DCTERMS.title, title))
+    # dct:description
+    description = Literal("Norwegian catalog of national base registries", lang="en")
+    _g.add((baseregister_catalog, DCTERMS.description, description))
+    # dct:publisher
+    publisher = URIRef(
+        "https://organization-catalogue.fellesdatakatalog.digdir.no/organizations/991825827"
+    )
+    _g.add((baseregister_catalog, DCTERMS.publisher, publisher))
+    # dct:LinguisticSystem
+    ls = URIRef("http://id.loc.gov/vocabulary/iso639-1/nb")
+    _g.add((baseregister_catalog, DCTERMS.LinguisticSystem, ls))
+    # dct:spatial
+    location = URIRef("http://publications.europa.eu/resource/authority/country/NOR")
+    _g.add((baseregister_catalog, DCTERMS.spatial, location))
 
     return _g
 
