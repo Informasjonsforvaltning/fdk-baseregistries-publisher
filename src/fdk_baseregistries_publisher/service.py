@@ -1,7 +1,7 @@
 """Service layer module for fdk_baseregistries_publisher."""
 from os import environ as env
 
-from rdflib import Graph, Namespace, RDF, URIRef
+from rdflib import DCTERMS, FOAF, Graph, Namespace, RDF, SKOS, URIRef
 
 from .exceptions.exeption import FetchFromServiceException
 
@@ -12,6 +12,11 @@ BASEREGISTRY_CATALOG_URL = env.get(
 )
 
 DCAT = Namespace("http://www.w3.org/ns/dcat#")
+PROV = Namespace("http://www.w3.org/ns/prov#")
+VCARD = Namespace("http://www.w3.org/2006/vcard/ns#")
+DQV = Namespace("http://www.w3.org/ns/dqvNS#")
+DCATNO = Namespace("http://difi.no/dcatno#")
+EUROVOC = Namespace("http://publications.europa.eu/ontology/authority/")
 
 BASEREGISTRY_DATASET_URLS = [
     "https://datasets.fellesdatakatalog.digdir.no/datasets/68d08f28-a16d-4fab-a953-ed4ab08ce2e2"
@@ -42,6 +47,15 @@ def _create_catalog_graph() -> Graph:
     _g = Graph()
 
     _g.bind("dcat", DCAT)
+    _g.bind("dct", DCTERMS)
+    _g.bind("skos", SKOS)
+    _g.bind("prov", PROV)
+    _g.bind("vcard", VCARD)
+    _g.bind("foaf", FOAF)
+    _g.bind("dqv", DQV)
+    _g.bind("dcatno", DCATNO)
+    _g.bind("eurovoc", EUROVOC)
+
     _g.add((baseregister_catalog, RDF.type, DCAT.Catalog))
 
     return _g
