@@ -7,7 +7,8 @@ from .exceptions.exeption import FetchFromServiceException
 
 
 BASEREGISTRY_CATALOG_URL = env.get(
-    "BASEREGISTRY_CATALOG_URL", "https://data.norge.no/baseregistries/catalog"
+    "BASEREGISTRY_CATALOG_URL",
+    "https://baseregistries-publisher.fellesdatakatalog.digdir.no",
 )
 
 DCAT = Namespace("http://www.w3.org/ns/dcat#")
