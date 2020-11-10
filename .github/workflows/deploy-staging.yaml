@@ -31,13 +31,11 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python3 -m pip install --user pipx
-          python3 -m pipx ensurepath
-          pipx install nox==2020.08.22
-          pipx install poetry==1.1.4
-          pipx inject nox nox-poetry
+          pip install poetry==1.1.4
+          pip install nox==2020.08.22
+          pip install nox-poetry==0.5.0
 
-      - name: Test with nox
+      - name: Build image and test with nox
         run: nox
         env:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
