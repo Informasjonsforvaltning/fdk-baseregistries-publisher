@@ -31,8 +31,10 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install nox==2020.08.22
-          pip install poetry==1.0.5
+          python3 -m pip install --user pipx
+          python3 -m pipx ensurepath
+          pipx install nox==2020.08.22
+          pipx install poetry==1.1.4
           pipx inject nox nox-poetry
 
       - name: Test with nox
