@@ -19,7 +19,9 @@ DCATNO = Namespace("http://difi.no/dcatno#")
 EUROVOC = Namespace("http://publications.europa.eu/ontology/authority/")
 
 BASEREGISTRY_DATASET_URLS = [
-    "https://datasets.fellesdatakatalog.digdir.no/datasets/68d08f28-a16d-4fab-a953-ed4ab08ce2e2"
+    "https://data.norge.no/datasets/68d08f28-a16d-4fab-a953-ed4ab08ce2e2",
+    "https://data.norge.no/datasets/e281c8c6-b944-4662-861d-a475e973e393",
+    "https://data.norge.no/datasets/1b4d8a57-008a-4988-803a-fde4a024eae5",
 ]
 
 catalog = Graph()
@@ -32,13 +34,14 @@ def fetch_baseregistries() -> Graph:
     _registries = Graph()
 
     for url in BASEREGISTRY_DATASET_URLS:
-        _registries += _get_dataset_by_url(url)
+        _baseregistry = _get_dataset_by_url(url)
         # Get the node for the dataset:
-        _baseregistry = _registries.value(
+        _baseregistry_url = _baseregistry.value(
             predicate=RDF.type, object=DCAT.Dataset, any=False
         )
         # Add the node to the catalog:
-        _catalog.add((baseregister_catalog, DCAT.dataset, _baseregistry))
+        _catalog.add((baseregister_catalog, DCAT.dataset, _baseregistry_url))
+        _registries += _baseregistry
     catalog = _catalog + _registries
     return catalog
 
