@@ -1,14 +1,25 @@
 """Unit test cases for the fdk_baseregistries_publisher service module."""
 from flask import Flask
 import pytest
+from pytest_mock import MockFixture
 
 
 @pytest.mark.integration
-def test_fetch_fetch_baseregistries(client: Flask) -> None:
+def test_fetch_baseregistries(client: Flask, mocker: MockFixture) -> None:
     """Should return a Graph."""
     response = client.get("/baseregistries")
     assert response.status_code == 200
     assert "text/turtle; charset=utf-8" == response.headers["Content-Type"]
+
+
+@pytest.mark.integration
+def test_fetch_baseregistries_when_parsing_fails(
+    client: Flask, mocker: MockFixture
+) -> None:
+    """Should raise a FetchFromServiceException."""
+    mocker.patch("rdflib.Graph.parse", return_value=None)
+    response = client.get("/baseregistries")
+    assert response.status_code == 500
 
 
 def _mock_queryresult() -> str:

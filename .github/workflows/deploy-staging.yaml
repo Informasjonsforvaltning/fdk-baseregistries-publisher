@@ -3,7 +3,7 @@ name: Deploy to staging
 on:
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
   build-and-deploy:
@@ -31,11 +31,11 @@ jobs:
 
       - name: Install dependencies
         run: |
+          pip install poetry==1.1.4
           pip install nox==2020.08.22
-          pip install poetry==1.0.5
-          pipx inject nox nox-poetry
+          pip install nox-poetry==0.5.0
 
-      - name: Test with nox
+      - name: Build image and test with nox
         run: nox
         env:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}

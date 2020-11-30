@@ -1,13 +1,16 @@
 """Package for exposing base registry descriptions in a Flask API."""
+import json
 from typing import Any
 
 from dotenv import load_dotenv
-from flask import Flask
+from flask import Flask, make_response, Response
 from flask_restful import Api
 
+from .exceptions.exeption import FetchFromServiceException
 from .resources.baseregistries import Baseregistries
 from .resources.ping import Ping
 from .resources.ready import Ready
+
 
 __version__ = "0.1.0"
 
@@ -33,4 +36,14 @@ def create_app(test_config: Any = None) -> Flask:
     api.add_resource(Ready, "/ready")
 
     api.add_resource(Baseregistries, "/baseregistries")
+
+    @app.errorhandler(FetchFromServiceException)
+    def handle_sparql_wrapper_exceptions(e: FetchFromServiceException) -> Response:
+        # replace the body with JSON
+        response = make_response()
+        response.data = json.dumps({"message": e.message})
+        response.content_type = "application/json"
+        response.status_code = e.status
+        return response
+
     return app
