@@ -20,7 +20,7 @@ nox.options.sessions = (
 def unit_tests(session: Session) -> None:
     """Run the unit test suite."""
     args = session.posargs
-    nox_poetry.install(session, nox_poetry.WHEEL)
+    nox_poetry.install(session, distribution_format=nox_poetry.WHEEL)
     nox_poetry.install(
         session,
         "pytest",
@@ -40,7 +40,7 @@ def unit_tests(session: Session) -> None:
 def integration_tests(session: Session) -> None:
     """Run the integration test suite."""
     args = session.posargs or ["--cov"]
-    nox_poetry.install(session, nox_poetry.WHEEL)
+    nox_poetry.install(session, distribution_format=nox_poetry.WHEEL)
     nox_poetry.install(
         session,
         "coverage[toml]",
@@ -62,7 +62,7 @@ def integration_tests(session: Session) -> None:
 def contract_tests(session: Session) -> None:
     """Run the contract test suite."""
     args = session.posargs
-    nox_poetry.install(session, nox_poetry.WHEEL)
+    nox_poetry.install(session, distribution_format=nox_poetry.WHEEL)
     nox_poetry.install(
         session, "pytest", "pytest-docker", "requests_mock", "pytest_mock"
     )
