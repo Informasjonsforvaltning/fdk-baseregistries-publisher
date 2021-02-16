@@ -2,7 +2,7 @@
 
 import nox
 from nox.sessions import Session
-import nox_poetry
+import nox_poetry.patch
 
 locations = "src", "tests", "noxfile.py"
 nox.options.stop_on_first_error = True
@@ -20,9 +20,8 @@ nox.options.sessions = (
 def unit_tests(session: Session) -> None:
     """Run the unit test suite."""
     args = session.posargs
-    nox_poetry.install(session, nox_poetry.WHEEL)
-    nox_poetry.install(
-        session,
+    session.install(".")
+    session.install(
         "pytest",
         "requests-mock",
         "pytest-mock",
@@ -40,9 +39,8 @@ def unit_tests(session: Session) -> None:
 def integration_tests(session: Session) -> None:
     """Run the integration test suite."""
     args = session.posargs or ["--cov"]
-    nox_poetry.install(session, nox_poetry.WHEEL)
-    nox_poetry.install(
-        session,
+    session.install(".")
+    session.install(
         "coverage[toml]",
         "pytest",
         "pytest-cov",
@@ -62,10 +60,8 @@ def integration_tests(session: Session) -> None:
 def contract_tests(session: Session) -> None:
     """Run the contract test suite."""
     args = session.posargs
-    nox_poetry.install(session, nox_poetry.WHEEL)
-    nox_poetry.install(
-        session, "pytest", "pytest-docker", "requests_mock", "pytest_mock"
-    )
+    session.install(".")
+    session.install("pytest", "pytest-docker", "requests_mock", "pytest_mock")
     session.run(
         "pytest",
         "-m contract",
@@ -79,7 +75,7 @@ def contract_tests(session: Session) -> None:
 def black(session: Session) -> None:
     """Run black code formatter."""
     args = session.posargs or locations
-    nox_poetry.install(session, "black")
+    session.install("black")
     session.run("black", *args)
 
 
@@ -87,8 +83,7 @@ def black(session: Session) -> None:
 def lint(session: Session) -> None:
     """Lint using flake8."""
     args = session.posargs or locations
-    nox_poetry.install(
-        session,
+    session.install(
         "flake8",
         "flake8-annotations",
         "flake8-bandit",
@@ -113,13 +108,13 @@ def safety(session: Session) -> None:
 def mypy(session: Session) -> None:
     """Type-check using mypy."""
     args = session.posargs or locations
-    nox_poetry.install(session, "mypy")
+    session.install("mypy")
     session.run("mypy", *args)
 
 
 @nox.session
 def coverage(session: Session) -> None:
     """Upload coverage data."""
-    nox_poetry.install(session, "coverage[toml]", "codecov")
+    session.install("coverage[toml]", "codecov")
     session.run("coverage", "xml", "--fail-under=0")
     session.run("codecov", *session.posargs)
