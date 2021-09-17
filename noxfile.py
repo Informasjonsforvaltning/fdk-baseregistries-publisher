@@ -4,6 +4,8 @@ import nox
 from nox.sessions import Session
 import nox_poetry.patch
 
+nox.options.envdir = ".cache"
+nox.options.reuse_existing_virtualenvs = True
 locations = "src", "tests", "noxfile.py"
 nox.options.stop_on_first_error = True
 nox.options.sessions = (
